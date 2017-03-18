@@ -30,19 +30,19 @@ function run(ComponentName) {
   const className = changeCase.camelCase(ComponentName);
 
   // Create and write JS to file
-  const componentPath = path.join(componentDirectory, 'index.js');
+  const componentPath = path.join(componentDirectory, `${ComponentName}.js`);
   const componentTemplate = buildJSTemplate(ComponentName, className);
   fs.writeFileSync(componentPath, componentTemplate);
 
   // Create and write inline styles to file
-  const stylesPath = path.join(componentDirectory, 'styles.js');
+  const stylesPath = path.join(componentDirectory, `${ComponentName}.styles.js`);
   const stylesTemplate = buildStylesTemplate(ComponentName, className);
   fs.writeFileSync(stylesPath, stylesTemplate);
 
   // Create and write a test to file
   const testPath = path.join(
     componentDirectory,
-    `index.test.js`
+    `${ComponentName}.test.js`
   );
   const testTemplate = buildTestTemplate(ComponentName);
   fs.writeFileSync(testPath, testTemplate);
@@ -72,7 +72,7 @@ function buildJSTemplate(ComponentName, className) {
 import React, { Component, PropTypes } from 'react';
 import { css } from 'aphrodite';
 
-import styles from './styles';
+import styles from './${ComponentName}.styles';
 
 
 const ${ComponentName} = () => {
