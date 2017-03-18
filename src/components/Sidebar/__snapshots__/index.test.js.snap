@@ -1,0 +1,6 @@
+exports[`Sidebar renders correctly 1`] = `
+<div
+  className="sidebar_3hmsj">
+  Your Component Here :)
+</div>
+`;
