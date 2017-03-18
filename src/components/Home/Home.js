@@ -3,13 +3,14 @@
 import React, { Component, PropTypes } from 'react';
 import { css } from '../../extensions/aphrodite';
 
+import BankInfo from '../BankInfo';
 import styles from './Home.styles';
 
 
 const Home = () => {
   return (
     <div className={css(styles.home)}>
-      Your Component Here :)
+      <BankInfo />
     </div>
   );
 };

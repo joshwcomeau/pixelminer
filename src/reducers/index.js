@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import bank from './bank.reducer';
+import bankBalance from './bank-balance.reducer';
 import upgrades from './upgrades.reducer';
 
 
 export default combineReducers({
-  bank,
+  bankBalance,
   upgrades,
 });

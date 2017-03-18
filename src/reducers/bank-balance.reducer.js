@@ -5,7 +5,7 @@ import type { Action } from '../types/Action.type';
 
 const initialState = 1000;
 
-export default function upgrades(
+export default function bankBalance(
   state: number = initialState,
   action: Action
 ) {
@@ -21,3 +21,7 @@ export default function upgrades(
     default: return state;
   }
 }
+
+
+// Selectors
+export const getBankBalance = state => state.bankBalance;

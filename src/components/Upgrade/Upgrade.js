@@ -19,8 +19,6 @@ const Upgrade = ({ data, purchaseUpgradeRequest }: Props) => {
   const { id, name, description, type, value, cost, quantityOwned } = data;
   const valueEvent = type === 'active' ? 'click' : 'second';
 
-  console.log({ purchaseUpgradeRequest })
-
   return (
     <div className={css(styles.upgrade)}>
       <div className={css(styles.cost)}>{cost} pixels</div>

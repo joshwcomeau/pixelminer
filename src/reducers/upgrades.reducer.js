@@ -2,6 +2,7 @@
 import { createSelector } from 'reselect';
 
 import { PURCHASE_UPGRADE_SUCCESS } from '../actions';
+import { getTotalRevenueOfUpgrades } from '../helpers';
 import type { Action } from '../types/Action.type';
 import type { Upgrade } from '../types/Upgrade.type';
 
@@ -70,8 +71,6 @@ export default function upgrades(
     case PURCHASE_UPGRADE_SUCCESS: {
       const upgrade = state[action.id];
 
-      console.log('purchased', upgrade);
-
       return {
         ...state,
         [action.id]: {
@@ -96,7 +95,7 @@ export const getPassiveUpgrades = createSelector(
       upgrade.type === 'passive'
     ))
   )
-)
+);
 
 export const getActiveUpgrades = createSelector(
   getUpgrades,
@@ -105,4 +104,14 @@ export const getActiveUpgrades = createSelector(
       upgrade.type === 'active'
     ))
   )
-)
+);
+
+export const getRevenuePerTick = createSelector(
+  getPassiveUpgrades,
+  upgrades => getTotalRevenueOfUpgrades(upgrades)
+);
+
+export const getRevenuePerClick = createSelector(
+  getActiveUpgrades,
+  upgrades => getTotalRevenueOfUpgrades(upgrades)
+);
