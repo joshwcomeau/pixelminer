@@ -22,12 +22,4 @@ const Sidebar = ({ title, children, className }:Props) => {
   );
 };
 
-Sidebar.propTypes = {
-
-};
-
-Sidebar.defaultProps = {
-
-};
-
 export default Sidebar;
