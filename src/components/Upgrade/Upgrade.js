@@ -3,12 +3,12 @@
 import React, { Component, PropTypes } from 'react';
 import { css } from '../../extensions/aphrodite';
 
+import type { Upgrade as UpgradeType } from '../../types/Upgrade.type';
 import styles from './Upgrade.styles';
 
 
-const Upgrade = ({
-  data: { id, name, description, type, value, cost, isOwned },
-}) => {
+const Upgrade = ({ data }: { data: UpgradeType }) => {
+  const { id, name, description, type, value, cost, isOwned } = data;
   const valueEvent = type === 'active' ? 'click' : 'second';
 
   return (

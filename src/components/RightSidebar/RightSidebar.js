@@ -5,10 +5,12 @@ import { css } from '../../extensions/aphrodite';
 
 import Sidebar from '../Sidebar';
 import Upgrade from '../Upgrade';
+
+import type { Upgrade as UpgradeType } from '../../types/Upgrade.type';
 import styles from './RightSidebar.styles';
 
 
-const RightSidebar = ({ upgrades }) => {
+const RightSidebar = ({ upgrades }: { upgrades: UpgradeType[] }) => {
   return (
     <Sidebar title="Passive Upgrades" className={styles.rightSidebar}>
       {upgrades.map(upgrade => (
@@ -18,9 +20,6 @@ const RightSidebar = ({ upgrades }) => {
   );
 };
 
-RightSidebar.propTypes = {
-
-};
 
 RightSidebar.defaultProps = {
   upgrades: [

@@ -1,4 +1,3 @@
-// @flow
 import { StyleSheet as originalStyleSheet } from 'aphrodite/no-important';
 
 export const globalSelectorHandler = (selector, _, generateSubtreeStyles) => {

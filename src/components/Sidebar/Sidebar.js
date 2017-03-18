@@ -6,7 +6,13 @@ import { css } from '../../extensions/aphrodite';
 import styles from './Sidebar.styles';
 
 
-const Sidebar = ({ title, children, className }) => {
+type Props = {
+  title: string,
+  children: any,
+  className: { [key:string]: string },
+};
+
+const Sidebar = ({ title, children, className }:Props) => {
   return (
     <div className={css(styles.sidebar, className)}>
       <h2 className={css(styles.title)}>{title}</h2>

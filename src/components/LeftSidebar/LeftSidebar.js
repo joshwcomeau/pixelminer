@@ -5,10 +5,12 @@ import { css } from '../../extensions/aphrodite';
 
 import Sidebar from '../Sidebar';
 import Upgrade from '../Upgrade';
+
+import type { Upgrade as UpgradeType } from '../../types/Upgrade.type';
 import styles from './LeftSidebar.styles';
 
 
-const LeftSidebar = ({ upgrades }) => {
+const LeftSidebar = ({ upgrades }: { upgrades: UpgradeType[] }) => {
   return (
     <Sidebar title="Active Upgrades" className={styles.leftSidebar}>
       {upgrades.map(upgrade => (
