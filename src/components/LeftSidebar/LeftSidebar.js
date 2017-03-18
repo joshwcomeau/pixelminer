@@ -26,6 +26,7 @@ LeftSidebar.defaultProps = {
     {
       id: 'pickaxe',
       name: 'Pickaxe',
+      description: 'Mine with a pickaxe instead of by hand.',
       type: 'active',
       value: 5,
       cost: 100,
@@ -33,6 +34,7 @@ LeftSidebar.defaultProps = {
     }, {
       id: 'vacuum-cleaner',
       name: 'Vacuum Cleaner',
+      description: 'Gather debris pixels that would otherwise be wasted.',
       type: 'active',
       value: 20,
       cost: 1000,
@@ -40,6 +42,7 @@ LeftSidebar.defaultProps = {
     }, {
       id: 'matter-disruptor',
       name: 'Matter Disruptor',
+      description: 'Alien technology that allows pixels to be separated quickly and precisely.',
       type: 'active',
       value: 140,
       cost: 10000,
