@@ -1,14 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import React, { Component, PropTypes } from 'react';
-import { css } from 'aphrodite';
+import { css } from '../../extensions/aphrodite';
 
 import styles from './Sidebar.styles';
 
 
-const Sidebar = () => {
+const Sidebar = ({ title, children, className }) => {
   return (
-    <div className={css(styles.sidebar)}>
-      Your Component Here :)
+    <div className={css(styles.sidebar, className)}>
+      <h2 className={css(styles.title)}>{title}</h2>
+
+      {children}
     </div>
   );
 };
