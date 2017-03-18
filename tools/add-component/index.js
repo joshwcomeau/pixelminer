@@ -29,6 +29,11 @@ function run(ComponentName) {
 
   const className = changeCase.camelCase(ComponentName);
 
+  // Create our index file, which points to our JS file
+  const indexPath = path.join(componentDirectory, 'index.js');
+  const indexTemplate = buildIndexFile(ComponentName);
+  fs.writeFileSync(indexPath, indexTemplate);
+
   // Create and write JS to file
   const componentPath = path.join(componentDirectory, `${ComponentName}.js`);
   const componentTemplate = buildJSTemplate(ComponentName, className);
@@ -64,13 +69,17 @@ function createDirectory(componentDirectory) {
   return componentDirectory;
 }
 
+function buildIndexFile(ComponentName) {
+  return `export { default } from './${ComponentName}';\n`
+}
+
 function buildJSTemplate(ComponentName, className) {
   // Not digging the break in indentation here,
   // but it's needed for the file to render correctly :(
   return `\
 // eslint-disable-next-line no-unused-vars
 import React, { Component, PropTypes } from 'react';
-import { css } from 'aphrodite';
+import { css } from '../../extensions/aphrodite';
 
 import styles from './${ComponentName}.styles';
 
