@@ -1,0 +1,6 @@
+exports[`App renders correctly 1`] = `
+<div
+  className="app_3hmsj">
+  Your Component Here :)
+</div>
+`;
