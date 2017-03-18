@@ -1,3 +1,4 @@
+// @flow
 // eslint-disable-next-line no-unused-vars
 import React, { Component, PropTypes } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';

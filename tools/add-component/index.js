@@ -77,6 +77,7 @@ function buildJSTemplate(ComponentName, className) {
   // Not digging the break in indentation here,
   // but it's needed for the file to render correctly :(
   return `\
+// @flow
 // eslint-disable-next-line no-unused-vars
 import React, { Component, PropTypes } from 'react';
 import { css } from '../../extensions/aphrodite';
