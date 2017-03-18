@@ -1,11 +1,11 @@
 import { StyleSheet } from '../../extensions/aphrodite';
-import { indigo, gray100, gray900 } from '../../constants/colors';
+import { indigo, gray100, gray800 } from '../../constants/colors';
 
 
 export default StyleSheet.create({
   globals: {
     '*body': {
-      background: gray900,
+      background: gray800,
       color: gray100,
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
     },
@@ -47,6 +47,10 @@ export default StyleSheet.create({
       lineHeight: 1.5,
       marginBottom: '18px',
     },
+
+    '*strong': {
+      fontWeight: 700,
+    },
   },
 
   app: {
@@ -56,10 +60,13 @@ export default StyleSheet.create({
     right: 0,
     bottom: 0,
     display: 'flex',
+    backgroundRepeat: 'repeat',
+    backgroundSize: '25px 25px',
+    backgroundPosition: 'center center',
   },
 
   sidebarWrapper: {
-    flexBasis: '250px',
+    flexBasis: '325px',
   },
 
   mainWrapper: {
