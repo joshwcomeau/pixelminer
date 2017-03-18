@@ -1,15 +1,25 @@
 // @flow
 // eslint-disable-next-line no-unused-vars
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { css } from '../../extensions/aphrodite';
 
+import { purchaseUpgradeRequest } from '../../actions';
 import type { Upgrade as UpgradeType } from '../../types/Upgrade.type';
+import type { Action as ActionType } from '../../types/Action.type';
 import styles from './Upgrade.styles';
 
 
-const Upgrade = ({ data }: { data: UpgradeType }) => {
-  const { id, name, description, type, value, cost, isOwned } = data;
+type Props = {
+  data: UpgradeType,
+  purchaseUpgradeRequest: ActionType,
+};
+
+const Upgrade = ({ data, purchaseUpgradeRequest }: Props) => {
+  const { id, name, description, type, value, cost, quantityOwned } = data;
   const valueEvent = type === 'active' ? 'click' : 'second';
+
+  console.log({ purchaseUpgradeRequest })
 
   return (
     <div className={css(styles.upgrade)}>
@@ -23,16 +33,12 @@ const Upgrade = ({ data }: { data: UpgradeType }) => {
         {' '}
         <strong className={css(styles.valueProposition)}>{value} pixels per {valueEvent}</strong>.
       </p>
+
+      <button onClick={() => purchaseUpgradeRequest(data)}>
+        Purchase
+      </button>
     </div>
   );
 };
 
-Upgrade.propTypes = {
-
-};
-
-Upgrade.defaultProps = {
-
-};
-
-export default Upgrade;
+export default connect(null, { purchaseUpgradeRequest })(Upgrade);

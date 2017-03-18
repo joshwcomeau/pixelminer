@@ -2,7 +2,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { css } from '../../extensions/aphrodite';
 
 import { getPassiveUpgrades } from '../../reducers/upgrades.reducer';
 import type { Upgrade as UpgradeType } from '../../types/Upgrade.type';

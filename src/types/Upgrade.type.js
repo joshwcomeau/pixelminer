@@ -9,5 +9,5 @@ export type Upgrade = {
   type: upgradeType,
   value: number,
   cost: number,
-  isOwned: boolean,
+  isOwned: number,
 };
