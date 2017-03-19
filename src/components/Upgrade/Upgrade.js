@@ -4,7 +4,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { css } from '../../extensions/aphrodite';
 
-import { purchaseUpgradeRequest } from '../../actions';
+import { purchaseUpgrade } from '../../actions';
+import { calculateCostOfNextUpgradePurchase } from '../../helpers';
+import { getBankBalance } from '../../reducers/bank-balance.reducer';
+import Button from '../Button';
+import CurrencySymbol from '../CurrencySymbol';
 import type { Upgrade as UpgradeType } from '../../types/Upgrade.type';
 import type { Action as ActionType } from '../../types/Action.type';
 import styles from './Upgrade.styles';
@@ -12,31 +16,62 @@ import styles from './Upgrade.styles';
 
 type Props = {
   data: UpgradeType,
-  purchaseUpgradeRequest: ActionType,
+  purchaseUpgrade: ActionType,
+  isAffordable: boolean,
 };
 
-const Upgrade = ({ data, purchaseUpgradeRequest }: Props) => {
-  const { id, name, description, type, value, cost, quantityOwned } = data;
+const Upgrade = ({
+  data,
+  purchaseUpgrade,
+  cost,
+  isAffordable
+}: Props) => {
+  const { id, name, description, type, value, quantityOwned } = data;
   const valueEvent = type === 'active' ? 'click' : 'second';
 
   return (
     <div className={css(styles.upgrade)}>
-      <div className={css(styles.cost)}>{cost} pixels</div>
+      <div className={css(styles.quantityOwned)}>
+        {quantityOwned}
+      </div>
 
       <h4 className={css(styles.name)}>{name}</h4>
       <p className={css(styles.description)}>{description}</p>
 
       <p className={css(styles.valueDescription)}>
-        Improves collection by
-        {' '}
-        <strong className={css(styles.valueProposition)}>{value} pixels per {valueEvent}</strong>.
+        <strong className={css(styles.valueProposition)}>
+          +{value}<CurrencySymbol />
+        </strong>
+        {' / '}
+        {valueEvent}
       </p>
 
-      <button onClick={() => purchaseUpgradeRequest(data)}>
-        Purchase
-      </button>
+      <div className={css(styles.buttonContainer)}>
+        <Button
+          disabled={!isAffordable}
+          onClick={() => purchaseUpgrade(id, cost)}
+        >
+          Purchase
+          &nbsp;&nbsp;
+          (<strong>{cost}<CurrencySymbol /></strong>)
+        </Button>
+      </div>
     </div>
   );
 };
 
-export default connect(null, { purchaseUpgradeRequest })(Upgrade);
+const mapStateToProps = (state, ownProps) => {
+  const upgrade = ownProps.data;
+
+  const bankBalance = getBankBalance(state);
+
+  const cost = calculateCostOfNextUpgradePurchase(upgrade);
+  const isAffordable = bankBalance > cost;
+
+  return {
+    cost,
+    isAffordable,
+  };
+};
+
+export default connect(mapStateToProps, { purchaseUpgrade })(Upgrade);

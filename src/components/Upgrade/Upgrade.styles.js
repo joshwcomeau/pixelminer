@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite';
-import { yellow, green } from '../../constants/colors';
+import { yellow, green, gray500 } from '../../constants/colors';
 
 
 export default StyleSheet.create({
@@ -11,24 +11,25 @@ export default StyleSheet.create({
     borderBottom: '1px solid rgba(0,0,0,0.6)',
   },
 
+  quantityOwned: {
+    position: 'absolute',
+    top: '0.75rem',
+    right: '0.8rem',
+    fontSize: 24,
+    color: gray500,
+  },
+
   name: {
-    fontSize: 16,
-    marginBottom: '4px',
+    fontSize: 17,
+    marginBottom: '10px',
     fontWeight: 700,
   },
 
   description: {
-    fontSize: 14,
+    fontSize: 12,
+    color: gray500,
     marginBottom: '10px',
     fontWeight: 200,
-  },
-
-  cost: {
-    position: 'absolute',
-    top: '1rem',
-    right: '1rem',
-    fontSize: 12,
-    color: yellow,
   },
 
   valueDescription: {
@@ -37,5 +38,9 @@ export default StyleSheet.create({
 
   valueProposition: {
     color: green,
+  },
+
+  buttonContainer: {
+    display: 'flex',
   },
 });
