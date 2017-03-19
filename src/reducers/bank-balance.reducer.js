@@ -1,5 +1,5 @@
 // @flow
-import { PURCHASE_UPGRADE_SUCCESS, EARN_PASSIVE_INCOME } from '../actions';
+import { PURCHASE_UPGRADE, EARN_PASSIVE_INCOME } from '../actions';
 import type { Action } from '../types/Action.type';
 
 
@@ -14,7 +14,7 @@ export default function bankBalance(
       return state + action.amount;
     }
 
-    case PURCHASE_UPGRADE_SUCCESS: {
+    case PURCHASE_UPGRADE: {
       return state - action.cost;
     }
 
@@ -24,4 +24,4 @@ export default function bankBalance(
 
 
 // Selectors
-export const getBankBalance = state => state.bankBalance;
+export const getBankBalance = (state: Object) => state.bankBalance;

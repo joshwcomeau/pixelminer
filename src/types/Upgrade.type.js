@@ -8,6 +8,6 @@ export type Upgrade = {
   description: string,
   type: upgradeType,
   value: number,
-  cost: number,
+  baseCost: number,
   isOwned: number,
 };

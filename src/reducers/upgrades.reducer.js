@@ -1,7 +1,7 @@
 // @flow
 import { createSelector } from 'reselect';
 
-import { PURCHASE_UPGRADE_SUCCESS } from '../actions';
+import { PURCHASE_UPGRADE } from '../actions';
 import { getTotalRevenueOfUpgrades } from '../helpers';
 import type { Action } from '../types/Action.type';
 import type { Upgrade } from '../types/Upgrade.type';
@@ -13,7 +13,7 @@ const initialState = {
     description: 'Mine with a pickaxe instead of by hand.',
     type: 'active',
     value: 5,
-    cost: 100,
+    baseCost: 100,
     quantityOwned: 0,
   },
   vacuumcleaner: {
@@ -22,7 +22,7 @@ const initialState = {
     description: 'Gather debris pixels that would otherwise be wasted.',
     type: 'active',
     value: 20,
-    cost: 1000,
+    baseCost: 1000,
     quantityOwned: 0,
   },
   matterdisruptor: {
@@ -31,7 +31,7 @@ const initialState = {
     description: 'Alien technology that allows pixels to be separated quickly and precisely.',
     type: 'active',
     value: 140,
-    cost: 10000,
+    baseCost: 10000,
     quantityOwned: 0,
   },
   worker: {
@@ -40,7 +40,7 @@ const initialState = {
     description: 'A simple worker who will mine pixels at a slow but steady rate.',
     type: 'passive',
     value: 2,
-    cost: 100,
+    baseCost: 100,
     quantityOwned: 0,
   },
   energybeam: {
@@ -49,7 +49,7 @@ const initialState = {
     description: 'A continuous beam that blasts pixels apart',
     type: 'passive',
     value: 5,
-    cost: 1000,
+    baseCost: 1000,
     quantityOwned: 0,
   },
   robominer2000: {
@@ -58,7 +58,7 @@ const initialState = {
     description: 'Automate your life with this purpose-built robot miner.',
     type: 'passive',
     value: 30,
-    cost: 10000,
+    baseCost: 10000,
     quantityOwned: 0,
   },
 };
@@ -68,7 +68,7 @@ export default function upgrades(
   action: Action
 ) {
   switch (action.type) {
-    case PURCHASE_UPGRADE_SUCCESS: {
+    case PURCHASE_UPGRADE: {
       const upgrade = state[action.id];
 
       return {
@@ -86,6 +86,10 @@ export default function upgrades(
 
 
 // Selectors
+export const createUpgradeSelector = (id: string) => (state: Object) => (
+  state.upgrades[id]
+);
+
 export const getUpgrades = (state: Object) => state.upgrades;
 
 export const getPassiveUpgrades = createSelector(
