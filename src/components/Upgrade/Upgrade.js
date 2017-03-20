@@ -16,6 +16,7 @@ import styles from './Upgrade.styles';
 
 type Props = {
   data: UpgradeType,
+  cost: number,
   purchaseUpgrade: ActionType,
   isAffordable: boolean,
 };

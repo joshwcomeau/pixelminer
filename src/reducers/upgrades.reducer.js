@@ -2,6 +2,7 @@
 import { createSelector } from 'reselect';
 
 import { PURCHASE_UPGRADE } from '../actions';
+import { BASE_CLICK_REVENUE } from '../constants/logic';
 import { getTotalRevenueOfUpgrades } from '../helpers';
 import type { Action } from '../types/Action.type';
 import type { Upgrade } from '../types/Upgrade.type';
@@ -117,5 +118,7 @@ export const getRevenuePerTick = createSelector(
 
 export const getRevenuePerClick = createSelector(
   getActiveUpgrades,
-  upgrades => getTotalRevenueOfUpgrades(upgrades)
+  upgrades => (
+    BASE_CLICK_REVENUE + getTotalRevenueOfUpgrades(upgrades)
+  )
 );

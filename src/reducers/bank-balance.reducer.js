@@ -1,5 +1,9 @@
 // @flow
-import { PURCHASE_UPGRADE, EARN_PASSIVE_INCOME } from '../actions';
+import {
+  PURCHASE_UPGRADE,
+  CLICK_PIXEL,
+  EARN_PASSIVE_INCOME
+} from '../actions';
 import type { Action } from '../types/Action.type';
 
 
@@ -10,6 +14,10 @@ export default function bankBalance(
   action: Action
 ) {
   switch (action.type) {
+    case CLICK_PIXEL: {
+      return state + action.value;
+    }
+
     case EARN_PASSIVE_INCOME: {
       return state + action.amount;
     }
