@@ -7,7 +7,7 @@ import styles from './Button.styles';
 
 
 type Props = {
-  children: any,
+  children?: React$Element<*>,
   className: string,
   onClick: Function,
 };
