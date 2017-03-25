@@ -6,6 +6,7 @@ export default StyleSheet.create({
     display: 'block',
     width: '100px',
     height: '100px',
+    perspective: 200,
   },
   clickablePixel: {
     width: '100%',

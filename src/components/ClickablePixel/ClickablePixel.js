@@ -18,7 +18,9 @@ type Props = {
 
 class ClickablePixel extends Component {
   props: Props;
-  node: ?HTMLElement;
+  node: HTMLElement;
+  depressPixel: (ev: MouseEvent) => void;
+  releasePixel: () => void;
 
   constructor(props: Props) {
     super(props);
@@ -27,11 +29,7 @@ class ClickablePixel extends Component {
     this.releasePixel = this.releasePixel.bind(this);
   }
 
-  depressPixel(ev: MouseEvent) {
-    if (!this.node) {
-      return;
-    }
-
+  depressPixel(ev) {
     const { clientX, clientY } = ev;
     const { top, left, width, height } = this.node.getBoundingClientRect();
 
@@ -63,7 +61,6 @@ class ClickablePixel extends Component {
       rotateY(${yRotation}deg)
       scale(0.95)
     `;
-    this.node.style.transformPerspective = 200;
   }
 
   releasePixel() {

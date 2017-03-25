@@ -12,6 +12,7 @@ type Props = {
   id: number,
   rootX: number,
   rootY: number,
+  eraseSelf: () => void,
 };
 
 type State = {
@@ -25,8 +26,9 @@ type State = {
 class Shrapnel extends Component {
   props: Props;
   state: State;
+  runLoop: () => void;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.runLoop = this.runLoop.bind(this);
@@ -51,7 +53,7 @@ class Shrapnel extends Component {
     };
   }
 
-  solveForY(x) {
+  solveForY(x: number) {
     const { a, b, c } = this.state;
 
     return a * x ** 2 + b * x + c;
