@@ -39,7 +39,7 @@ class ClickableVoxel extends Component {
     //  ___________
     // |     |     |
     // |     |     |
-    // |-----X-----|
+    // |-----+-----|
     // |     |     |
     // |_____|_____|
     //
@@ -47,9 +47,16 @@ class ClickableVoxel extends Component {
     // The top left corner is (-1, -1),
     // the bottom right corner is (1, 1)
     //
-    // Figure out where exactly, in this cartesian plane, our click fell.
-    const xPoint = (clientX - left - width / 2) / width * 2;
-    const yPoint = (clientY - top - height / 2) / height * 2 * -1;
+    // Get the offset in pixels from the top-left corner of the voxel.
+    const offsetWithinBoxX = clientX - left;
+    const offsetWithinBoxY = clientY - top;
+
+    const offsetFromCenterX = offsetWithinBoxX - width / 2;
+    const offsetFromCenterY = offsetWithinBoxY - height / 2;
+
+    // Get the value normalized to (-1, 1)
+    const xPoint = (offsetWithinBoxX / width) * 2 - 1;
+    const yPoint = ((offsetWithinBoxY / height) * 2 - 1) * -1;
 
     // Rotate the cube based on these positions.
     const ROTATION_MAGNITUDE = 12;
@@ -68,7 +75,7 @@ class ClickableVoxel extends Component {
 
     this.shadowNode.style.transform = `
       scale(${1 + yPoint * 0.2})
-      translateX(${Math.round(yRotation * -2)}px)
+      translateX(${xPoint * -20}px)
     `;
   }
 
