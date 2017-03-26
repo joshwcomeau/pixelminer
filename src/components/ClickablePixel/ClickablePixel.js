@@ -8,7 +8,7 @@ import { clickPixel } from '../../actions';
 import { getRevenuePerClick } from '../../reducers/upgrades.reducer';
 
 import Shrapnel from '../Shrapnel';
-import styles from './ClickablePixel.styles';
+import styles, { PIXEL_SIZE } from './ClickablePixel.styles';
 
 
 type Props = {
@@ -51,7 +51,7 @@ class ClickablePixel extends Component {
     const yPoint = (clientY - top - height / 2) / height * 2 * -1;
 
     // Rotate the cube based on these positions.
-    const ROTATION_MAGNITUDE = 8;
+    const ROTATION_MAGNITUDE = 12;
     const xRotation = yPoint * ROTATION_MAGNITUDE;
     const yRotation = xPoint * ROTATION_MAGNITUDE;
 
@@ -60,12 +60,13 @@ class ClickablePixel extends Component {
       rotateX(${xRotation}deg)
       rotateY(${yRotation}deg)
       scale(0.95)
+      translateZ(-${PIXEL_SIZE / 2}px)
     `;
   }
 
   releasePixel() {
     this.node.style.transition = '200ms';
-    this.node.style.transform = '';
+    this.node.style.transform = 'translateZ(-100px)';
   }
 
   render() {
@@ -80,7 +81,13 @@ class ClickablePixel extends Component {
           onMouseDown={this.depressPixel}
           onMouseUp={this.releasePixel}
           onMouseOut={this.releasePixel}
-        />
+        >
+          <div className={css(styles.side, styles.frontSide)} />
+          <div className={css(styles.side, styles.topSide)} />
+          <div className={css(styles.side, styles.leftSide)} />
+          <div className={css(styles.side, styles.rightSide)} />
+          <div className={css(styles.side, styles.bottomSide)} />
+        </button>
       </div>
     );
   }
