@@ -48,4 +48,16 @@ export default StyleSheet.create({
     background: gray600,
     transform: `rotateX(-90deg) translateZ(${PIXEL_SIZE / 2}px)`,
   },
+
+  shadow: {
+    position: 'absolute',
+    left: '10%',
+    right: '10%',
+    bottom: '-55px',
+    height: 20,
+    borderRadius: '100%',
+    background: 'rgba(0,0,0,0.25)',
+    filter: 'blur(7px)',
+    transition: 'opacity 200ms',
+  },
 });

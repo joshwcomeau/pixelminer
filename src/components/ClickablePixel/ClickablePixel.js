@@ -18,7 +18,8 @@ type Props = {
 
 class ClickablePixel extends Component {
   props: Props;
-  node: HTMLElement;
+  pixelNode: HTMLElement;
+  shadowNode: HTMLElement;
   depressPixel: (ev: MouseEvent) => void;
   releasePixel: () => void;
 
@@ -31,7 +32,7 @@ class ClickablePixel extends Component {
 
   depressPixel(ev) {
     const { clientX, clientY } = ev;
-    const { top, left, width, height } = this.node.getBoundingClientRect();
+    const { top, left, width, height } = this.pixelNode.getBoundingClientRect();
 
     // We want to imagine that axes form through our pixel, meeting in the
     // center:
@@ -55,18 +56,27 @@ class ClickablePixel extends Component {
     const xRotation = yPoint * ROTATION_MAGNITUDE;
     const yRotation = xPoint * ROTATION_MAGNITUDE;
 
-    this.node.style.transition = '0ms';
-    this.node.style.transform = `
+    this.pixelNode.style.transition = '0ms';
+    this.shadowNode.style.transition = '0ms';
+
+    this.pixelNode.style.transform = `
       rotateX(${xRotation}deg)
       rotateY(${yRotation}deg)
       scale(0.95)
       translateZ(-${PIXEL_SIZE / 2}px)
     `;
+
+    this.shadowNode.style.transform = `
+      scale(${1 + yPoint * 0.2})
+      translateX(${Math.round(yRotation * -2)}px)
+    `;
   }
 
   releasePixel() {
-    this.node.style.transition = '200ms';
-    this.node.style.transform = 'translateZ(-100px)';
+    this.pixelNode.style.transition = '200ms';
+    this.shadowNode.style.transition = '200ms';
+    this.pixelNode.style.transform = 'translateZ(-100px)';
+    this.shadowNode.style.transform = 'scale(1)';
   }
 
   render() {
@@ -75,7 +85,7 @@ class ClickablePixel extends Component {
     return (
       <div className={css(styles.clickablePixelWrapper)}>
         <button
-          ref={node => this.node = node}
+          ref={node => this.pixelNode = node}
           className={css(styles.clickablePixel)}
           onClick={() => clickPixel(revenuePerClick)}
           onMouseDown={this.depressPixel}
@@ -88,6 +98,11 @@ class ClickablePixel extends Component {
           <div className={css(styles.side, styles.rightSide)} />
           <div className={css(styles.side, styles.bottomSide)} />
         </button>
+
+        <div
+          className={css(styles.shadow)}
+          ref={node => this.shadowNode = node}
+        />
       </div>
     );
   }
