@@ -3,7 +3,7 @@ import type { Upgrade as UpgradeType } from '../types/Upgrade.type';
 
 // Action Types
 export const START_GAME = 'START_GAME';
-export const CLICK_PIXEL = 'CLICK_PIXEL';
+export const CLICK_VOXEL = 'CLICK_VOXEL';
 export const PURCHASE_UPGRADE = 'PURCHASE_UPGRADE';
 export const EARN_PASSIVE_INCOME = 'EARN_PASSIVE_INCOME';
 
@@ -13,8 +13,8 @@ export const startGame = () => ({
   type: START_GAME,
 });
 
-export const clickPixel = (value: number) => ({
-  type: CLICK_PIXEL,
+export const clickVoxel = (value: number) => ({
+  type: CLICK_VOXEL,
   value,
 });
 

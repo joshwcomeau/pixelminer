@@ -4,37 +4,37 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { css } from '../../extensions/aphrodite';
 
-import { clickPixel } from '../../actions';
+import { clickVoxel } from '../../actions';
 import { getRevenuePerClick } from '../../reducers/upgrades.reducer';
 
 import Shrapnel from '../Shrapnel';
-import styles, { PIXEL_SIZE } from './ClickableVoxel.styles';
+import styles, { VOXEL_SIZE } from './ClickableVoxel.styles';
 
 
 type Props = {
-  clickPixel: Function,
+  clickVoxel: Function,
   revenuePerClick: number,
 };
 
 class ClickableVoxel extends Component {
   props: Props;
-  pixelNode: HTMLElement;
+  voxelNode: HTMLElement;
   shadowNode: HTMLElement;
-  depressPixel: (ev: MouseEvent) => void;
-  releasePixel: () => void;
+  depressVoxel: (ev: MouseEvent) => void;
+  releaseVoxel: () => void;
 
   constructor(props: Props) {
     super(props);
 
-    this.depressPixel = this.depressPixel.bind(this);
-    this.releasePixel = this.releasePixel.bind(this);
+    this.depressVoxel = this.depressVoxel.bind(this);
+    this.releaseVoxel = this.releaseVoxel.bind(this);
   }
 
-  depressPixel(ev) {
+  depressVoxel(ev) {
     const { clientX, clientY } = ev;
-    const { top, left, width, height } = this.pixelNode.getBoundingClientRect();
+    const { top, left, width, height } = this.voxelNode.getBoundingClientRect();
 
-    // We want to imagine that axes form through our pixel, meeting in the
+    // We want to imagine that axes form through our voxel, meeting in the
     // center:
     //  ___________
     // |     |     |
@@ -47,7 +47,7 @@ class ClickableVoxel extends Component {
     // The top left corner is (-1, -1),
     // the bottom right corner is (1, 1)
     //
-    // Get the offset in pixels from the top-left corner of the voxel.
+    // Get the offset in voxels from the top-left corner of the voxel.
     const offsetWithinBoxX = clientX - left;
     const offsetWithinBoxY = clientY - top;
 
@@ -63,14 +63,14 @@ class ClickableVoxel extends Component {
     const xRotation = yPoint * ROTATION_MAGNITUDE;
     const yRotation = xPoint * ROTATION_MAGNITUDE;
 
-    this.pixelNode.style.transition = '0ms';
+    this.voxelNode.style.transition = '0ms';
     this.shadowNode.style.transition = '0ms';
 
-    this.pixelNode.style.transform = `
+    this.voxelNode.style.transform = `
       rotateX(${xRotation}deg)
       rotateY(${yRotation}deg)
       scale(0.95)
-      translateZ(-${PIXEL_SIZE / 2}px)
+      translateZ(-${VOXEL_SIZE / 2}px)
     `;
 
     this.shadowNode.style.transform = `
@@ -79,25 +79,25 @@ class ClickableVoxel extends Component {
     `;
   }
 
-  releasePixel() {
-    this.pixelNode.style.transition = '200ms';
+  releaseVoxel() {
+    this.voxelNode.style.transition = '200ms';
     this.shadowNode.style.transition = '200ms';
-    this.pixelNode.style.transform = 'translateZ(-100px)';
+    this.voxelNode.style.transform = 'translateZ(-100px)';
     this.shadowNode.style.transform = 'scale(1)';
   }
 
   render() {
-    const { clickPixel, revenuePerClick } = this.props;
+    const { clickVoxel, revenuePerClick } = this.props;
 
     return (
       <div className={css(styles.ClickableVoxelWrapper)}>
         <button
-          ref={node => this.pixelNode = node}
+          ref={node => this.voxelNode = node}
           className={css(styles.ClickableVoxel)}
-          onClick={() => clickPixel(revenuePerClick)}
-          onMouseDown={this.depressPixel}
-          onMouseUp={this.releasePixel}
-          onMouseOut={this.releasePixel}
+          onClick={() => clickVoxel(revenuePerClick)}
+          onMouseDown={this.depressVoxel}
+          onMouseUp={this.releaseVoxel}
+          onMouseOut={this.releaseVoxel}
         >
           <div className={css(styles.side, styles.frontSide)} />
           <div className={css(styles.side, styles.topSide)} />
@@ -119,4 +119,4 @@ const mapStateToProps = (state: Object) => ({
   revenuePerClick: getRevenuePerClick(state),
 });
 
-export default connect(mapStateToProps, { clickPixel })(ClickableVoxel);
+export default connect(mapStateToProps, { clickVoxel })(ClickableVoxel);

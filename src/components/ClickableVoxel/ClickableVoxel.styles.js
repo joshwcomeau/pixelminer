@@ -1,14 +1,14 @@
 import { StyleSheet } from 'aphrodite';
 import { white, gray300, gray500, gray600 } from '../../constants/colors';
 
-export const PIXEL_SIZE = 200;
+export const VOXEL_SIZE = 200;
 
 export default StyleSheet.create({
   ClickableVoxelWrapper: {
     display: 'block',
     position: 'relative',
-    width: PIXEL_SIZE,
-    height: PIXEL_SIZE,
+    width: VOXEL_SIZE,
+    height: VOXEL_SIZE,
     perspective: 1000,
   },
   ClickableVoxel: {
@@ -18,7 +18,7 @@ export default StyleSheet.create({
     background: 'transparent',
     outline: 'none',
     transformStyle: 'preserve-3d',
-    transform: `translateZ(-${PIXEL_SIZE / 2}px)`,
+    transform: `translateZ(-${VOXEL_SIZE / 2}px)`,
   },
   side: {
     position: 'absolute',
@@ -30,23 +30,23 @@ export default StyleSheet.create({
   },
   frontSide: {
     background: white,
-    transform: `rotateY(0deg) translateZ(${PIXEL_SIZE / 2}px)`
+    transform: `rotateY(0deg) translateZ(${VOXEL_SIZE / 2}px)`
   },
   topSide: {
     background: gray300,
-    transform: `rotateX(90deg) translateZ(${PIXEL_SIZE / 2}px)`,
+    transform: `rotateX(90deg) translateZ(${VOXEL_SIZE / 2}px)`,
   },
   leftSide: {
     background: gray500,
-    transform: `rotateY(-90deg) translateZ(${PIXEL_SIZE / 2}px)`,
+    transform: `rotateY(-90deg) translateZ(${VOXEL_SIZE / 2}px)`,
   },
   rightSide: {
     background: gray500,
-    transform: `rotateY(90deg) translateZ(${PIXEL_SIZE / 2}px)`,
+    transform: `rotateY(90deg) translateZ(${VOXEL_SIZE / 2}px)`,
   },
   bottomSide: {
     background: gray600,
-    transform: `rotateX(-90deg) translateZ(${PIXEL_SIZE / 2}px)`,
+    transform: `rotateX(-90deg) translateZ(${VOXEL_SIZE / 2}px)`,
   },
 
   shadow: {

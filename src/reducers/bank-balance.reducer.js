@@ -1,7 +1,7 @@
 // @flow
 import {
   PURCHASE_UPGRADE,
-  CLICK_PIXEL,
+  CLICK_VOXEL,
   EARN_PASSIVE_INCOME
 } from '../actions';
 import type { Action } from '../types/Action.type';
@@ -14,7 +14,7 @@ export default function bankBalance(
   action: Action
 ) {
   switch (action.type) {
-    case CLICK_PIXEL: {
+    case CLICK_VOXEL: {
       return state + action.value;
     }
 
