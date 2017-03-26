@@ -4,14 +4,14 @@ import { white, gray300, gray500, gray600 } from '../../constants/colors';
 export const PIXEL_SIZE = 200;
 
 export default StyleSheet.create({
-  clickablePixelWrapper: {
+  ClickableVoxelWrapper: {
     display: 'block',
     position: 'relative',
     width: PIXEL_SIZE,
     height: PIXEL_SIZE,
     perspective: 1000,
   },
-  clickablePixel: {
+  ClickableVoxel: {
     width: '100%',
     height: '100%',
     border: 'none',

@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ClickablePixel from './index';
+import ClickableVoxel from './index';
 
-describe('ClickablePixel', () => {
+describe('ClickableVoxel', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(<ClickablePixel />).toJSON();
+    const tree = renderer.create(<ClickableVoxel />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

@@ -5,11 +5,11 @@ import { css } from '../../extensions/aphrodite';
 
 import withShrapnelOnClick from '../../HOCs/withShrapnelOnClick';
 import BankInfo from '../BankInfo';
-import ClickablePixel from '../ClickablePixel';
+import ClickableVoxel from '../ClickableVoxel';
 import styles from './Home.styles';
 
 
-const ClickablePixelWithShrapnel = withShrapnelOnClick(ClickablePixel);
+const ClickableVoxelWithShrapnel = withShrapnelOnClick(ClickableVoxel);
 
 const Home = () => {
   return (
@@ -18,7 +18,7 @@ const Home = () => {
         <BankInfo />
       </div>
 
-      <ClickablePixelWithShrapnel />
+      <ClickableVoxelWithShrapnel />
     </div>
   );
 };

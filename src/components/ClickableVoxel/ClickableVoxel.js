@@ -8,7 +8,7 @@ import { clickPixel } from '../../actions';
 import { getRevenuePerClick } from '../../reducers/upgrades.reducer';
 
 import Shrapnel from '../Shrapnel';
-import styles, { PIXEL_SIZE } from './ClickablePixel.styles';
+import styles, { PIXEL_SIZE } from './ClickableVoxel.styles';
 
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
   revenuePerClick: number,
 };
 
-class ClickablePixel extends Component {
+class ClickableVoxel extends Component {
   props: Props;
   pixelNode: HTMLElement;
   shadowNode: HTMLElement;
@@ -83,10 +83,10 @@ class ClickablePixel extends Component {
     const { clickPixel, revenuePerClick } = this.props;
 
     return (
-      <div className={css(styles.clickablePixelWrapper)}>
+      <div className={css(styles.ClickableVoxelWrapper)}>
         <button
           ref={node => this.pixelNode = node}
-          className={css(styles.clickablePixel)}
+          className={css(styles.ClickableVoxel)}
           onClick={() => clickPixel(revenuePerClick)}
           onMouseDown={this.depressPixel}
           onMouseUp={this.releasePixel}
@@ -112,4 +112,4 @@ const mapStateToProps = (state: Object) => ({
   revenuePerClick: getRevenuePerClick(state),
 });
 
-export default connect(mapStateToProps, { clickPixel })(ClickablePixel);
+export default connect(mapStateToProps, { clickPixel })(ClickableVoxel);
