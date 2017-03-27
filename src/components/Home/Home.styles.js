@@ -11,8 +11,7 @@ export default StyleSheet.create({
   bankInfoWrapper: {
     position: 'absolute',
     top: '1rem',
-    left: 0,
-    right: 0,
-    textAlign: 'center',
+    right: '1rem',
+    textAlign: 'right',
   }
 });

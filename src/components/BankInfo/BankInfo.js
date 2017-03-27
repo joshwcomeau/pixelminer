@@ -9,25 +9,31 @@ import {
   getRevenuePerTick,
   getRevenuePerClick,
 } from '../../reducers/upgrades.reducer';
+
+import CurrencySymbol from '../CurrencySymbol';
 import styles from './BankInfo.styles';
 
 
 type Props = {
   totalAmount: number,
-  revenueperTick: number,
+  revenuePerTick: number,
   revenuePerClick: number,
 }
-const BankInfo = ({ totalAmount, revenueperTick, revenuePerClick }: Props) => (
+const BankInfo = ({ totalAmount, revenuePerTick, revenuePerClick }: Props) => (
   <div className={css(styles.bankInfo)}>
-    <h2>{totalAmount} pixels</h2>
-    <h5>{revenuePerClick}/click</h5>
-    <h5>{revenueperTick}/second</h5>
+    <h2 className={css(styles.total)}>{totalAmount} <CurrencySymbol /></h2>
+    <h5 className={css(styles.subDetail)}>
+      {revenuePerClick} <CurrencySymbol />/click
+    </h5>
+    <h5 className={css(styles.subDetail)}>
+      {revenuePerTick} <CurrencySymbol />/second
+    </h5>
   </div>
 );
 
 const mapStateToProps = state => ({
   totalAmount: getBankBalance(state),
-  revenueperTick: getRevenuePerTick(state),
+  revenuePerTick: getRevenuePerTick(state),
   revenuePerClick: getRevenuePerClick(state),
 })
 
